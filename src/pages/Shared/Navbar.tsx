@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import logo from "../../assets/logo.jpeg";
 import { navItems } from "@/constants";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -29,12 +30,12 @@ const Navbar = () => {
           </ul>
           <div className="hidden lg:flex justify-center space-x-12 items-center">
             
-            <a
-              href="#"
-              className="bg-gradient-to-r from-green-500 to-green-800 py-2 px-3 rounded-md text-white"
-            >
-              Dashboard
-            </a>
+          <Link
+                to="/dashboard/addItems"
+                className="py-2 px-3 rounded-md bg-gradient-to-r from-green-500 to-green-800 text-white"
+              >
+                DashBoard
+              </Link>
           </div>
           <div className="lg:hidden md:flex flex-col justify-end">
             <button onClick={toggleNavbar}>
@@ -53,12 +54,12 @@ const Navbar = () => {
             </ul>
             <div className="flex space-x-6">
               
-              <a
-                href="#"
+              <Link
+                to="/dashboard/addItems"
                 className="py-2 px-3 rounded-md bg-gradient-to-r from-green-500 to-green-800 text-white"
               >
                 DashBoard
-              </a>
+              </Link>
             </div>
           </div>
         )}
