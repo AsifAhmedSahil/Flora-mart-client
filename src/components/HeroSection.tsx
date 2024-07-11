@@ -5,16 +5,14 @@ const HeroSection = () => {
   return (
     <div className="flex flex-col items-center mt-6 lg:mt-20">
       <h1 className="text-4xl sm:text-6xl lg:text-7xl text-center tracking-wide">
-        VirtualR build tools
+      Fresh Plants Delivered  
         <span className="bg-gradient-to-r from-green-500 to-green-800 text-transparent bg-clip-text">
           {" "}
-          for developers
+          Straight to Your Door
         </span>
       </h1>
       <p className="mt-10 text-lg text-center text-neutral-500 max-w-4xl">
-        Empower your creativity and bring your VR app ideas to life with our
-        intuitive development tools. Get started today and turn your imagination
-        into immersive reality!
+      Breathe life into your space with fresh plants delivered straight to your door! No need to battle crowded stores or heavy pots. We offer a curated selection of healthy, vibrant greenery to brighten your home or office. Browse our collection, find your perfect match, and have it delivered with ease. Let us help you cultivate a touch of nature's beauty, conveniently delivered.
       </p>
       <div className="flex justify-center my-10">
         <a

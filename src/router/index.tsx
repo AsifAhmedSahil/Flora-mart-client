@@ -1,5 +1,6 @@
 import Dashboard from "@/components/Layouts/Dashboard";
 import MainLayout from "@/components/Layouts/MainLayouts";
+import CategoryPage from "@/pages/category/CategoryPage";
 import AddProduct from "@/pages/Dashboard/AddProduct";
 import AllProducts from "@/pages/Dashboard/AllProducts";
 import Home from "@/pages/Home/Home";
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      
+      {
+        path: "/categories/:category",
+        element: <CategoryPage />,
+      },
+
       {
         path: "*",
         element: <NotFound />,
@@ -36,14 +41,14 @@ const router = createBrowserRouter([
       //   element: <Dashboard />,
       // },
       {
-        path:'addItems',
-        element: <AddProduct/>
-    },
+        path: "addItems",
+        element: <AddProduct />,
+      },
       {
-        path:'allProducts',
-        element: <AllProducts/>
-    },
-      
+        path: "allProducts",
+        element: <AllProducts />,
+      },
+
       {
         path: "*",
         element: <NotFound />,
