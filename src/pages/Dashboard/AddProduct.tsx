@@ -43,7 +43,7 @@ const AddItems = () => {
 
           <div className="form-control w-full my-6">
             <label className="label">
-              <span className="label-text">Product Name</span>
+              <span className="label-text">Product Title</span>
             </label>
             <input
               type="text"
@@ -70,7 +70,7 @@ const AddItems = () => {
                 </option>
                 <option value="flower">flower</option>
                 <option value="fruit">fruit</option>
-                <option value="money plant">money plant</option>
+                <option value=" plant"> plant</option>
                 <option value="bamboo">bamboo</option>
                 <option value="cactus">cactus</option>
               </select>
