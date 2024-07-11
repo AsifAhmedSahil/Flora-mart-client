@@ -2,7 +2,7 @@
 
 import { useUpdateProductsMutation } from "@/redux/api/baseApi"
 import { useForm } from "react-hook-form"
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 
 type TAddProduct ={
@@ -21,6 +21,7 @@ type TAddProduct ={
 
 
 const UpdateItem = () => {
+    const navigate = useNavigate()
     const item= useLoaderData()
     const {_id,title,price,rating,quantity,description,image,category} = item.data
     
@@ -47,6 +48,7 @@ const UpdateItem = () => {
             showConfirmButton: false,
             timer: 1500
           });
+          navigate("/dashboard/allProducts")
     }
     
   };

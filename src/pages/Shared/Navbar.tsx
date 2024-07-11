@@ -32,7 +32,7 @@ const Navbar = () => {
           <div className="hidden lg:flex justify-center space-x-12 items-center">
             
           <Link
-                to="/dashboard/addItems"
+                to="/dashboard/allProducts"
                 className="py-2 px-3 rounded-md bg-gradient-to-r from-green-500 to-green-800 text-white"
               >
                 DashBoard

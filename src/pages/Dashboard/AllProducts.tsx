@@ -58,9 +58,7 @@ type TAddProduct ={
       }
     });
   };
-  const handleUpdateItem = (id :string) => {
-    
-  };
+  
 
   return (
     <div>
@@ -77,7 +75,7 @@ type TAddProduct ={
             <tr>
               <th>No.</th>
               <th>Image</th>
-              <th>Name</th>
+              <th>Title</th>
               <th>Category</th>
               <th> Price</th>
               <th>Update</th>
@@ -104,7 +102,7 @@ type TAddProduct ={
                   <Link to={`/dashboard/updateItem/${item._id}`}>
                     {/* <Link to={"/dashboard/updateItem"}> */}
                     <button
-                    onClick={() => handleUpdateItem(item._id)}
+                    
                     className="btn btn-ghost btn-lg text-red-500 rounded-xl">
                       <FaEdit></FaEdit>
                     </button>

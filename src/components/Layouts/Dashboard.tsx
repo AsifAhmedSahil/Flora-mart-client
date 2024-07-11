@@ -1,11 +1,7 @@
-import React from "react";
-import {
-  //   FaEnvelope,
-  //   FaHome,
 
-  FaUtensilSpoon,
-} from "react-icons/fa";
-// import { MdOutlineMenu } from "react-icons/md";
+
+
+import Navbar from "@/pages/Shared/Navbar";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -13,9 +9,11 @@ const Dashboard = () => {
 
   //   const [isAdmin] = useAdmin()
   return (
-    <div className="flex flex-col pl-40 ">
+    <div className="flex flex-col container mx-auto ">
+      <Navbar/>
       <div className="w-full  bg-green-500">
-        <ul className="menu mt-20 flex flex-row items-center justify-center gap-16 ">
+        <h1 className="text-center text-xl lg:text-3xl md:text-2xl font-bold  pt-10">Welcome To FloraMart Dashboard </h1>
+        <ul className="menu mt-10 flex flex-row items-center justify-center gap-16 ">
           
           
           <li className="">
@@ -43,7 +41,7 @@ const Dashboard = () => {
           
         </ul>
       </div>
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 mb-16">
         <Outlet></Outlet>
       </div>
     </div>
