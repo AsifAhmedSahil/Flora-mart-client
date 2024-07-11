@@ -15,12 +15,13 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">
       <div className="container px-4 mx-auto relative lg:text-sm">
-        <div className="flex justify-between items-center">
+        <div  className="flex justify-between items-center">
+          <Link to={"/"}>
           <div className="flex items-center flex-shrink-0">
             <img className="h-12 w-12 mr-2 cursor-pointer" src={logo} alt="Logo" />
-
-            <span className="text-xl tracking-tight">FloraMart</span>
+            <span  className="text-xl tracking-tight">FloraMart</span>
           </div>
+          </Link>
           <ul className="hidden lg:flex ml-14 space-x-12">
             {navItems.map((item, index) => (
               <li key={index}>

@@ -19,11 +19,11 @@ function CategoryItem ({name,href,backgroundColor,color}) {
 function CategoryList () {
     return(
         <div className="flex flex-wrap justify-center items-center gap-8">
-            <CategoryItem name="flower" href="/categories/flower" backgroundColor="#f0f5c4" color="#000000"/>
-            <CategoryItem name="fruit" href="/categories/fruit" backgroundColor="#4CCDE4" color="#000000"/>
-            <CategoryItem name="bonshai" href="/categories/bonshai" backgroundColor="#D8E44C" color="#000000"/>
-            <CategoryItem name="bamboo" href="/categories/bamboo" backgroundColor="#6AE260" color="#000000"/>
-            <CategoryItem name="cactus" href="/categories/cactus" backgroundColor="#E29460" color="#000000"/>
+            <CategoryItem name="flower" href="/products/flower" backgroundColor="#f0f5c4" color="#000000"/>
+            <CategoryItem name="fruit" href="/products/fruit" backgroundColor="#4CCDE4" color="#000000"/>
+            <CategoryItem name="bonshai" href="/products/bonshai" backgroundColor="#D8E44C" color="#000000"/>
+            <CategoryItem name="bamboo" href="/products/bamboo" backgroundColor="#6AE260" color="#000000"/>
+            <CategoryItem name="cactus" href="/products/cactus" backgroundColor="#E29460" color="#000000"/>
             </div>
     )
 }
