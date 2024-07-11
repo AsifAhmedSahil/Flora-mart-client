@@ -1,5 +1,5 @@
 export const navItems = [
-    { label: "Features", href: "#" },
+    { label: "Products", href: "/products" },
     { label: "Workflow", href: "#" },
     { label: "Pricing", href: "#" },
     { label: "Testimonials", href: "#" },

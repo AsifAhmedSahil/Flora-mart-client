@@ -28,18 +28,20 @@ const ProductCart = ({
       return text;
     }
   };
-  console.log(_id,"from product cart")
+  // console.log(_id,"from product cart")
   return (
-    <Link to={`/items/${_id}`}>
-      <div className="card bg-white w-11/12 md:w-96 lg:w-96  hover:shadow-xl transition duration-500 rounded-lg ">
+    <>
+      
+      <div className="card bg-gray-400 w-11/12 md:w-96 lg:w-96  hover:shadow-xl transition duration-500 rounded-lg ">
       <figure>
         <img className="w-full h-[150px] md:h-[200px] lg:h-[250px] object-cover"
           src={image}
           alt="Shoes"
         />
       </figure>
+      <Link to={`/items/${_id}`}>
       <div className="card-body">
-        <h2 className="card-title">
+        <h2 className="card-title text-lg">
           {title}
           <div className="badge bg-green-300 px-2 py-2">{rating}★</div>
         </h2>
@@ -52,8 +54,15 @@ const ProductCart = ({
           </div>
         </div>
       </div>
+      </Link>
+      <Link to={"/cart"} className=" bg-green-800 text-white rounded-lg py-2 w-2/4  mb-2 mx-auto text-center">
+      <button  className="">Add To cart</button>
+      </Link>
+    
     </div>
-    </Link>
+    
+    
+    </>
   );
 };
 

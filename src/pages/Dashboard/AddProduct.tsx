@@ -32,6 +32,7 @@ const AddItems = () => {
             timer: 1500
           });
     }
+    reset()
     
   };
 
