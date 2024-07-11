@@ -1,11 +1,11 @@
 import { useDeleteSingleProductsMutation, useGetAllProductsQuery } from "@/redux/api/baseApi";
-import React from "react";
+
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AllProducts = () => {
-  const { data: products, isLoading } = useGetAllProductsQuery();
+  const { data: products, isLoading } = useGetAllProductsQuery(undefined);
   const [deleteItem] = useDeleteSingleProductsMutation()
 
 
@@ -58,6 +58,9 @@ type TAddProduct ={
       }
     });
   };
+  const handleUpdateItem = (id :string) => {
+    
+  };
 
   return (
     <div>
@@ -100,7 +103,9 @@ type TAddProduct ={
                 <td>
                   <Link to={`/dashboard/updateItem/${item._id}`}>
                     {/* <Link to={"/dashboard/updateItem"}> */}
-                    <button className="btn btn-ghost btn-lg text-red-500 rounded-xl">
+                    <button
+                    onClick={() => handleUpdateItem(item._id)}
+                    className="btn btn-ghost btn-lg text-red-500 rounded-xl">
                       <FaEdit></FaEdit>
                     </button>
                   </Link>

@@ -3,6 +3,7 @@ import MainLayout from "@/components/Layouts/MainLayouts";
 import CategoryPage from "@/pages/category/CategoryPage";
 import AddProduct from "@/pages/Dashboard/AddProduct";
 import AllProducts from "@/pages/Dashboard/AllProducts";
+import UpdateItem from "@/pages/Dashboard/UpdateItem";
 import Home from "@/pages/Home/Home";
 // import MovieDetails from "@/pages/Movies/MovieDetails";
 // import Movies from "@/pages/Movies/Movies";
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
       {
         path: "allProducts",
         element: <AllProducts />,
+      },
+      {
+        path: "updateItem/:id",
+        element: <UpdateItem/>,
+        loader: ({params}) => fetch(`http://localhost:5000/api/products/${params.id}`)
       },
 
       {

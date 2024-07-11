@@ -49,13 +49,13 @@ export const baseApi = createApi({
 
 
     updateProducts: builder.mutation({
-      query: ({id,...updatedProduct}) => {
+      query: (options) => {
         return {
           // query: () => ({
           // url: `/tasks?priority=${priority}`,
-          url: `/products/${id}`,
+          url: `/products/${options.id}`,
           method: "PATCH",
-          body:updatedProduct
+          body:options.data
         };
       },
       invalidatesTags:['Products']

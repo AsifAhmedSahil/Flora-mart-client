@@ -1,44 +1,58 @@
-import {
-  useAddProductsMutation,
-  useGetAllProductsQuery,
-} from "@/redux/api/baseApi";
-import { useForm } from "react-hook-form";
-// import SectionTitle from "../../../Componets/SectionTitle/SectionTitle";
-import { FaUtensils } from "react-icons/fa";
-import Swal from "sweetalert2";
-// import useAxiosPublic from "../../../hooks/useAxiosPublic"
-// import useAxiosSecure from "../../../hooks/useAxiosSecure"
 
-// import Swal from "sweetalert2";
-// import { Helmet } from "react-helmet-async";
 
-// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+import { useUpdateProductsMutation } from "@/redux/api/baseApi"
+import { useForm } from "react-hook-form"
+import { useLoaderData } from "react-router-dom"
+import Swal from "sweetalert2"
 
-const AddItems = () => {
-  const [addItems] = useAddProductsMutation();
-  
+type TAddProduct ={
+    _id:string,
+      title:string,
+      price:number,
+      rating:number,
+      quantity:number,
+      image:string,
+      category:string,
+      categoryID?:string,
+      description:string,
+      isDeleted?:boolean,
+      instock?:boolean
+  }
 
-  const { register, handleSubmit, reset } = useForm();
+
+const UpdateItem = () => {
+    const item= useLoaderData()
+    const {_id,title,price,rating,quantity,description,image,category} = item.data
+    
+
+    const [updateItem] = useUpdateProductsMutation()
+   
+    
+
+    const { register, handleSubmit} = useForm();
   const onSubmit = async (data) => {
     console.log(data);
-    const res = addItems(data);
+    const options = {
+        id:_id,
+        data:data
+    }
+    // console.log(_id)
+    const res = updateItem(options)
+    
     if(res){
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `${data.title} is added to the collections.`,
+            title: `${data.title} updated successfully.`,
             showConfirmButton: false,
             timer: 1500
           });
     }
     
   };
-
-
+   
   return (
     <div>
-      <div>
         <form onSubmit={handleSubmit(onSubmit)}>
 
           <div className="form-control w-full my-6">
@@ -47,6 +61,7 @@ const AddItems = () => {
             </label>
             <input
               type="text"
+              defaultValue={title}
               placeholder="Product Name"
               {...register("title", { required: true })}
               required
@@ -61,7 +76,7 @@ const AddItems = () => {
                 <span className="label-text">Category*</span>
               </label>
               <select
-                defaultValue="default"
+                defaultValue={category}
                 {...register("category", { required: true })}
                 className="select select-bordered w-full"
               >
@@ -85,6 +100,7 @@ const AddItems = () => {
               <input
                 type="number"
                 placeholder="Price"
+                defaultValue={price}
                 {...register("price", { required: true })}
                 className="input input-bordered w-full"
               />
@@ -98,7 +114,7 @@ const AddItems = () => {
                 <span className="label-text">Rating</span>
               </label>
               <select
-                defaultValue="default"
+                defaultValue={rating}
                 {...register("rating", { required: true })}
                 className="select select-bordered w-full"
               >
@@ -122,6 +138,7 @@ const AddItems = () => {
               <input
                 type="number"
                 placeholder="Quantity"
+                defaultValue={quantity}
                 {...register("quantity", { required: true })}
                 className="input input-bordered w-full"
               />
@@ -135,7 +152,9 @@ const AddItems = () => {
               <span className="label-text">Description</span>
             </label>
             <textarea
+            defaultValue={description}
               {...register("description")}
+              
               className="textarea textarea-bordered h-24"
               placeholder="Product Description ..."
             ></textarea>
@@ -145,24 +164,12 @@ const AddItems = () => {
                         <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                     </div> */}
 
-          <div className="form-control w-full my-6">
-            <label className="label">
-              <span className="label-text">Image URL</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Put image Url"
-              {...register("image", { required: true })}
-              required
-              className="input input-bordered w-full px-2 py-4 rounded-full"
-            />
-          </div>
+          
 
           <button className="btn">Add Products</button>
         </form>
       </div>
-    </div>
-  );
-};
+  )
+}
 
-export default AddItems;
+export default UpdateItem
