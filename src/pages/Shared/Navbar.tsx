@@ -40,7 +40,7 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="hidden lg:flex justify-center space-x-12 items-center">
+          <div className="hidden lg:flex justify-center space-x-4  items-center">
             
           <Link
                 to="/dashboard/allProducts"
@@ -48,8 +48,14 @@ const Navbar = () => {
               >
                 DashBoard
               </Link>
+              <Link
+                to="/cart"
+                className="py-2 px-3 rounded-md bg-gradient-to-r from-green-500 to-green-800 text-white"
+              >
+                Cart ({totalQuantity})
+              </Link>
           </div>
-          <div className="hidden lg:flex justify-center space-x-12 bgred5 items-center">
+          {/* <div className="hidden lg:flex justify-center space-x-12 bgred5 items-center">
             
           <Link
                 to="/cart"
@@ -57,7 +63,7 @@ const Navbar = () => {
               >
                 Cart ({totalQuantity})
               </Link>
-          </div>
+          </div> */}
           <div className="lg:hidden md:flex flex-col justify-end">
             <button onClick={toggleNavbar}>
               {mobileDrawerOpen ? <X /> : <Menu />}
@@ -73,13 +79,20 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <div className="flex space-x-6">
+            <div className="flex space-x-6 mt-4">
               
               <Link
                 to="/dashboard/addItems"
                 className="py-2 px-3 rounded-md bg-gradient-to-r from-green-500 to-green-800 text-white"
               >
                 DashBoard
+              </Link>
+
+              <Link
+                to="/cart"
+                className="py-2 px-3 rounded-md bg-gradient-to-r from-green-500 to-green-800 text-white"
+              >
+                Cart ({totalQuantity})
               </Link>
               
             </div>
