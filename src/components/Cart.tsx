@@ -30,8 +30,8 @@ const Cart = () => {
             Product
           </div>
           <p className="font-normal text-xl leading-8 text-gray-500 flex items-center justify-between">
-            <span className="w-full max-w-[200px] text-center">
-              Delivery Charge
+            <span className="w-full max-w-[200px] text-center ">
+              Action
             </span>
             <span className="w-full max-w-[260px] text-center">Quantity</span>
             
@@ -52,25 +52,20 @@ const Cart = () => {
                 <h5 className="font-semibold text-xl leading-8 text-black max-[550px]:text-center">
                   {data.title}
                 </h5>
-                <p className="font-normal text-lg leading-8 text-gray-500 my-2 min-[550px]:my-3 max-[550px]:text-center">
+                <p className="font-normal text-lg leading-8  w-1/3 ml-4 lg:w-full text-gray-500 my-2 lg:min-[550px]:my-3 lg:max-[550px]:text-center">
                   Instock: {data.quantity}
                 </p>
-                <h6 className="font-medium text-lg leading-8 text-indigo-600  max-[550px]:text-center">
-                  ${data.price}
+                <h6 className="font-normal text-lg leading-8  w-1/3 ml-4 lg:w-full text-gray-500 my-2 lg:min-[550px]:my-3 lg:max-[550px]:text-center">
+                  Price: ${data.price}
                 </h6>
               </div>
-              <button onClick={() => dispatch(removeItem(data._id))}>
-                <FaRegTrashAlt className="text-black px-2 py-2 size-10 rounded-lg bg-red-500" />
-              </button>
+              
             </div>
-            <div className="flex items-center flex-col min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
-              <h6 className="font-manrope font-bold text-2xl leading-9 text-black w-full max-w-[176px] text-center">
-                $15.00{" "}
-                <span className="text-sm text-gray-300 ml-3 lg:hidden whitespace-nowrap">
-                  (Delivery Charge)
-                </span>
-              </h6>
-              <div className="flex items-center mr-0   mx-auto justify-center ">
+            <div className="flex flex-row items-center  min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
+            <button className=" w-full  lg:w-1/3" onClick={() => dispatch(removeItem(data._id))}>
+                <FaRegTrashAlt className="text-black px-2 py-2 size-10 rounded-lg bg-red-500 lg:bg-white   w-full " />
+              </button>
+              <div className="flex items-center mr-0   mx-auto justify-center   ">
                 <button onClick={() => dispatch(decreaseItemQuantity(data._id))} className="group rounded-l-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50">
                   <svg
                     className="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
