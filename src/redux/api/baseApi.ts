@@ -25,14 +25,24 @@ export const baseApi = createApi({
     addProducts: builder.mutation({
       query: (product) => {
         return {
-          // query: () => ({
-          // url: `/tasks?priority=${priority}`,
+          
           url: `/products`,
           method: "POST",
           body:product
         };
       },
       invalidatesTags:['Products']
+    }),
+    addOrders: builder.mutation({
+      query: (order) => {
+        return {
+          
+          url: `/order`,
+          method: "POST",
+          body:order
+        };
+      },
+      // invalidatesTags:['Products']
     }),
 
 
@@ -79,7 +89,7 @@ export const baseApi = createApi({
   }),
 });
 
-export const {useGetAllProductsQuery,useGetSingleProductsQuery,useAddProductsMutation,useUpdateProductsMutation,useDeleteSingleProductsMutation} = baseApi
+export const {useGetAllProductsQuery,useGetSingleProductsQuery,useAddProductsMutation,useUpdateProductsMutation,useDeleteSingleProductsMutation , useAddOrdersMutation} = baseApi
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints

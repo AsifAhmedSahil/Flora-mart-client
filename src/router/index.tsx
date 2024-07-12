@@ -2,6 +2,7 @@ import Cart from "@/components/Cart";
 import CheckOut from "@/components/CheckOut";
 import Dashboard from "@/components/Layouts/Dashboard";
 import MainLayout from "@/components/Layouts/MainLayouts";
+import Payment from "@/components/Payment";
 import CategoryPage from "@/pages/category/CategoryPage";
 import AddProduct from "@/pages/Dashboard/AddProduct";
 import AllProducts from "@/pages/Dashboard/AllProducts";
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <CheckOut />,
+      },
+      {
+        path: "checkout/payment",
+        element: <Payment />,
       },
       {
         path: "/items/:id",

@@ -1,47 +1,31 @@
-import {
-  useAddProductsMutation,
-  useGetAllProductsQuery,
-} from "@/redux/api/baseApi";
+import { useAddProductsMutation } from "@/redux/api/baseApi";
 import { useForm } from "react-hook-form";
-// import SectionTitle from "../../../Componets/SectionTitle/SectionTitle";
-import { FaUtensils } from "react-icons/fa";
+
 import Swal from "sweetalert2";
-// import useAxiosPublic from "../../../hooks/useAxiosPublic"
-// import useAxiosSecure from "../../../hooks/useAxiosSecure"
-
-// import Swal from "sweetalert2";
-// import { Helmet } from "react-helmet-async";
-
-// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItems = () => {
   const [addItems] = useAddProductsMutation();
-  
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {
     console.log(data);
     const res = addItems(data);
-    if(res){
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${data.title} is added to the collections.`,
-            showConfirmButton: false,
-            timer: 1500
-          });
+    if (res) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${data.title} is added to the collections.`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
-    reset()
-    
+    reset();
   };
-
 
   return (
     <div>
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
-
           <div className="form-control w-full my-6">
             <label className="label">
               <span className="label-text">Product Title</span>
@@ -76,7 +60,6 @@ const AddItems = () => {
                 <option value="cactus">cactus</option>
               </select>
             </div>
-
 
             {/* price */}
             <div className="form-control w-full my-6">
@@ -114,7 +97,6 @@ const AddItems = () => {
               </select>
             </div>
 
-
             {/* price */}
             <div className="form-control w-full my-6">
               <label className="label">
@@ -128,7 +110,6 @@ const AddItems = () => {
               />
             </div>
           </div>
-
 
           {/* recipe details */}
           <div className="form-control">
