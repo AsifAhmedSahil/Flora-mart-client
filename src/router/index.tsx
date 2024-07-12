@@ -3,7 +3,9 @@ import CheckOut from "@/components/CheckOut";
 import Dashboard from "@/components/Layouts/Dashboard";
 import MainLayout from "@/components/Layouts/MainLayouts";
 import Payment from "@/components/Payment";
+import About from "@/pages/About/About";
 import CategoryPage from "@/pages/category/CategoryPage";
+import Contact from "@/pages/Contact/Contact";
 import AddProduct from "@/pages/Dashboard/AddProduct";
 import AllProducts from "@/pages/Dashboard/AllProducts";
 
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <CheckOut />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
       {
         path: "checkout/payment",

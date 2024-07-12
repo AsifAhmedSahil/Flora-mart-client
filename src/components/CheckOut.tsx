@@ -1,5 +1,6 @@
 import { useAddOrdersMutation } from "@/redux/api/baseApi";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -8,12 +9,21 @@ const CheckOut = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const navigate = useNavigate()
 
+  const { cart, totalQuantity, totalPrice } = useSelector(
+    (state) => state.allCart
+  );
+
+//   console.log(cart,"under check out form")
+
+//   cart?.map((item)=> console.log(item._id))
+
   const onSubmit = async (data) => {
     console.log(data); // Ensure this prints the expected form data structure
 
     // Example of how you might use the mutation hook to add orders
     try {
-      const response = await addItems(data);
+        const orderData = { ...data, products: cart.map(item => ({ productId: item._id })) };
+      const response = await addItems(orderData);
       if (response.data) {
         Swal.fire({
             position: "top-end",
