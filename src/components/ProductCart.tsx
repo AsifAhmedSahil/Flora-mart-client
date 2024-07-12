@@ -59,9 +59,16 @@ const ProductCart = ({
         </div>
       </div>
       </Link>
+      {quantity && quantity > 0 ?
       <Link to={""} className=" bg-green-800 text-white rounded-lg py-2 w-2/4  mb-2 mx-auto text-center">
+
       <button onClick={()=> dispatch(addToCart(item))}  disabled={quantity === 0} className="">Add To cart</button>
       </Link>
+      : 
+      <Link to={""} className=" bg-slate-800 text-white rounded-lg py-2 w-2/4  mb-2 mx-auto text-center">
+      <button    className="">Out of stock</button>
+      </Link>
+      }
     
     </div>
     
