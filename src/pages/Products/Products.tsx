@@ -22,6 +22,7 @@ const Products = () => {
                 {
                     currentProducts?.map((product) => (
                         <ProductCart key={product._id} {...product} currentPage={currentPage} />
+                        
                     ))
                 }
             </div>

@@ -1,12 +1,23 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../assets/logo.jpeg";
 import { navItems } from "@/constants";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartTotal } from "@/redux/features/cartSlice";
 
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
+  const dispatch = useDispatch()
+
+  const {cart , totalQuantity} = useSelector((state)=> state.allCart)
+  useEffect(() => {
+    dispatch(getCartTotal())
+  }, [cart]) 
+  
+
+
 
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
@@ -38,6 +49,15 @@ const Navbar = () => {
                 DashBoard
               </Link>
           </div>
+          <div className="hidden lg:flex justify-center space-x-12 bgred5 items-center">
+            
+          <Link
+                to="/cart"
+                className="py-2 px-3 rounded-md bg-gradient-to-r from-green-500 to-green-800 text-white"
+              >
+                Cart ({totalQuantity})
+              </Link>
+          </div>
           <div className="lg:hidden md:flex flex-col justify-end">
             <button onClick={toggleNavbar}>
               {mobileDrawerOpen ? <X /> : <Menu />}
@@ -61,7 +81,9 @@ const Navbar = () => {
               >
                 DashBoard
               </Link>
+              
             </div>
+            
           </div>
         )}
       </div>

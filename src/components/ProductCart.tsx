@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCart } from "@/redux/features/cartSlice";
 
 type TProducts = {
   _id:string,
@@ -29,6 +31,8 @@ const ProductCart = ({
     }
   };
   // console.log(_id,"from product cart")
+  const dispatch = useDispatch()
+  const item = {_id,title,category,image,price,quantity,rating,description,number:1} 
   return (
     <>
       
@@ -55,8 +59,8 @@ const ProductCart = ({
         </div>
       </div>
       </Link>
-      <Link to={"/cart"} className=" bg-green-800 text-white rounded-lg py-2 w-2/4  mb-2 mx-auto text-center">
-      <button  className="">Add To cart</button>
+      <Link to={""} className=" bg-green-800 text-white rounded-lg py-2 w-2/4  mb-2 mx-auto text-center">
+      <button onClick={()=> dispatch(addToCart(item))}  className="">Add To cart</button>
       </Link>
     
     </div>

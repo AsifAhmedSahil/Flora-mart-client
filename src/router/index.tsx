@@ -1,3 +1,4 @@
+import Cart from "@/components/Cart";
 import Dashboard from "@/components/Layouts/Dashboard";
 import MainLayout from "@/components/Layouts/MainLayouts";
 import CategoryPage from "@/pages/category/CategoryPage";
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/items/:id",

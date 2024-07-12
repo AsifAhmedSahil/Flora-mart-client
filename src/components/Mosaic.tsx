@@ -1,6 +1,7 @@
 const Mosaic = () => {
   return (
 <>
+    
     <h2 className="text-center text-xl lg:text-5xl md:text-4xl font-bold mt-20 mb-10">Faces of Health and Happiness</h2>
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 ">
         
