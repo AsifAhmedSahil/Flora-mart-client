@@ -1,9 +1,11 @@
 import Cart from "@/components/Cart";
+import CheckOut from "@/components/CheckOut";
 import Dashboard from "@/components/Layouts/Dashboard";
 import MainLayout from "@/components/Layouts/MainLayouts";
 import CategoryPage from "@/pages/category/CategoryPage";
 import AddProduct from "@/pages/Dashboard/AddProduct";
 import AllProducts from "@/pages/Dashboard/AllProducts";
+
 import UpdateItem from "@/pages/Dashboard/UpdateItem";
 import Home from "@/pages/Home/Home";
 import ProductDetails from "@/pages/Product/ProductDetails";
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
+        path: "checkout",
+        element: <CheckOut />,
+      },
+      {
         path: "/items/:id",
         element: <ProductDetails />,
         loader: ({params}) => fetch(`http://localhost:5000/api/products/${params.id}`)
@@ -61,6 +67,7 @@ const router = createBrowserRouter([
         path: "addItems",
         element: <AddProduct />,
       },
+      
       {
         path: "allProducts",
         element: <AllProducts />,

@@ -60,7 +60,7 @@ const ProductCart = ({
       </div>
       </Link>
       <Link to={""} className=" bg-green-800 text-white rounded-lg py-2 w-2/4  mb-2 mx-auto text-center">
-      <button onClick={()=> dispatch(addToCart(item))}  className="">Add To cart</button>
+      <button onClick={()=> dispatch(addToCart(item))}  disabled={quantity === 0} className="">Add To cart</button>
       </Link>
     
     </div>

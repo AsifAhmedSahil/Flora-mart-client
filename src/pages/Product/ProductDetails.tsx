@@ -1,9 +1,13 @@
+import { useDispatch } from "react-redux"
 import { useLoaderData } from "react-router-dom"
+import { addToCart } from "@/redux/features/cartSlice";
 
 
 const ProductDetails = () => {
     const item = useLoaderData()
+    const dispatch = useDispatch()
     const{title,image,price,rating,category,description,quantity} = item.data
+    const cartData = {title,image,price,rating,category,description,quantity,number:1}
     // console.log(item.data)
   return (
     <div className="container mx-auto">
@@ -18,7 +22,7 @@ const ProductDetails = () => {
                     <h2 className="text-xl font-bold ml-4 mt-10">Attention:</h2>
                     <p className="ml-4">{description}</p>
                     <h2 className="ml-4 mt-10 text-2xl">TK {price}</h2>
-                    <button className="btn mt-10 ml-4 bg-green-800 text-white hover:bg-green-700 font-bold border-none">Add To Cart</button>
+                    <button onClick={()=> dispatch(addToCart(cartData))}  disabled={quantity === 0} className="btn mt-10 ml-4 bg-green-800 text-white hover:bg-green-700 font-bold border-none">Add To Cart</button>
                     <h2 className="ml-4 text-xl mt-10"><span className="font-bold">In Stock:</span> {quantity} piece only</h2>
                 </div>
             </div>
