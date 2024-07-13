@@ -1,15 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
 // export interface CounterState {
 //     value: number
 //   }
+interface CartItem {
+  _id: string;
+  number: number;
+  price:number
   
-  const initialState = {
-    cart:[],
-    totalQuantity:0,
-    totalPrice:0,
-    searchText : ""
-  }
+}
+
+
+  
+const initialState = {
+  cart: [] as { _id: string; /* add other properties here */ }[],
+  totalQuantity: 0,
+  totalPrice: 0,
+  searchText: ""
+}
+
 
   export const cartSlice = createSlice({
     name:'cart',
@@ -20,18 +30,19 @@ import { createSlice } from '@reduxjs/toolkit'
         state.cart = [];
       },
 
-        addToCart: (state, action) => {
-          const { _id } = action.payload;
-          const existingItem = state.cart.find(item => item._id === _id);
-    
-          if (existingItem) {
-            // If item already exists in cart, increment quantity
-            existingItem.number += 1;
-          } else {
-            // If item does not exist in cart, add it
-            state.cart.push(action.payload);
-          }
-        },
+      addToCart: (state, action) => {
+        const { _id } = action.payload;
+        const existingItem = state.cart.find(item => item._id === _id);
+      
+        if (existingItem) {
+          // Assert `existingItem` to have both _id and number properties
+          const updatedItem = existingItem as CartItem; // Type assertion
+          updatedItem.number += 1; // Now you can safely access number
+        } else {
+          // If item does not exist in cart, add it
+          state.cart.push(action.payload);
+        }
+      },
         
 
         getCartTotal: (state) => {
@@ -39,17 +50,14 @@ import { createSlice } from '@reduxjs/toolkit'
             (cartTotal, cartItem) => {
               console.log("carttotal", cartTotal);
               console.log("cartitem", cartItem);
-              const { price, number } = cartItem;
-              console.log(price, number);
-              const itemTotal = price * number;
+              // Assert `cartItem` to have both price and number properties
+              const updatedItem = cartItem as CartItem; // Type assertion
+              const itemTotal = updatedItem.price * updatedItem.number;
               cartTotal.totalPrice += itemTotal;
-              cartTotal.totalQuantity += number;
+              cartTotal.totalQuantity += updatedItem.number;
               return cartTotal;
             },
-            {
-              totalPrice: 0,
-              totalQuantity: 0,
-            }
+            { totalPrice: 0, totalQuantity: 0 }
           );
           state.totalPrice = parseInt(totalPrice.toFixed(2));
           state.totalQuantity = totalQuantity;
@@ -60,7 +68,9 @@ import { createSlice } from '@reduxjs/toolkit'
         increaseItemQuantity: (state, action) => {
           state.cart = state.cart.map((item) => {
             if (item._id === action.payload) {
-              return { ...item, number: item.number + 1 };
+              // Assert `item` to have both _id and number properties
+              const updatedItem = item as CartItem; // Type assertion
+              return { ...updatedItem, number: updatedItem.number + 1 };
             }
             return item;
           });
@@ -68,7 +78,8 @@ import { createSlice } from '@reduxjs/toolkit'
         decreaseItemQuantity: (state, action) => {
           state.cart = state.cart.map((item) => {
             if (item._id === action.payload) {
-              return { ...item, number: item.number - 1 };
+              const updatedItem = item as CartItem; // Type assertion
+              return { ...updatedItem, number: Math.max(updatedItem.number - 1, 0) }; // Ensure quantity doesn't go negative
             }
             return item;
           });

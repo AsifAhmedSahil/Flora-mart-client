@@ -5,13 +5,14 @@ import { navItems } from "@/constants";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartTotal } from "@/redux/features/cartSlice";
+import { RootState } from "@/redux/store";
 
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const dispatch = useDispatch()
 
-  const {cart , totalQuantity} = useSelector((state)=> state.allCart)
+  const {cart , totalQuantity} = useSelector((state : RootState)=> state.allCart)
   useEffect(() => {
     dispatch(getCartTotal())
   }, [cart]) 

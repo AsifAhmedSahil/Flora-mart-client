@@ -1,14 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDeleteSingleProductsMutation, useGetAllProductsQuery } from "@/redux/api/baseApi";
-import { useState } from "react";
+
 
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AllProducts = () => {
-  const [categoryData,setCategoryData] = useState("")
-  const [sortData,setSortData] = useState("")
-  const { data: products, isLoading } = useGetAllProductsQuery({ category: categoryData, sort: sortData });
+  
+  const { data: products, isLoading } = useGetAllProductsQuery({});
   const [deleteItem] = useDeleteSingleProductsMutation()
 
 
@@ -46,7 +46,7 @@ type TAddProduct ={
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = deleteItem(item._id)
+        const res = await deleteItem(item._id)
         if(res){
           Swal.fire({
             position: "top-end",
@@ -144,7 +144,7 @@ type TAddProduct ={
       </tr>
     </thead>
     <tbody className="bg-white divide-y divide-gray-200">
-      {products.data?.map((item, index) => (
+      {products.data?.map((item:any , index:any) => (
         <tr key={item._id} className="text-sm text-gray-600">
           <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
           <td className="px-6 py-4 whitespace-nowrap">

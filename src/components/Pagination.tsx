@@ -1,5 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FaAngleLeft,FaAngleRight } from "react-icons/fa";
-const Pagination = ({
+
+
+interface PaginationProps {
+  activePage: number;
+  paginate: (pageNumber: number) => void;
+  totalProducts: number;
+  productsPerPage: number;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
   activePage,
   paginate,
   totalProducts,

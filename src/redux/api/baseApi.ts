@@ -1,10 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+type QueryParams = {
+  category?: string;
+  sortName?: string;
+  search?: string;
+};
 
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://batch-3-assignament-4-floramart-server.vercel.app/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://batch-3-assignament-4-floramart-server.vercel.app/api/" }),
   tagTypes:['Products'],
   endpoints: (builder) => ({
 
@@ -22,15 +29,15 @@ export const baseApi = createApi({
     // }),
 
     getAllProducts: builder.query({
-      query: ({ category, sortName ,search}) => {
-        const params = {};
+      query: ({ category, sortName ,search}:QueryParams ) => {
+        const params:any = {};
         
         if (category) {
           params.category = category;
         }
         
         if (sortName) {
-          params.sortName = sortName; // Ensure sort is added to params if it exists
+          params.sortName  = sortName; // Ensure sort is added to params if it exists
         }
         if(search){
           params.search = search

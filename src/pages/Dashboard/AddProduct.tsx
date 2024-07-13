@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAddProductsMutation } from "@/redux/api/baseApi";
 import { useForm } from "react-hook-form";
 
@@ -7,9 +8,9 @@ const AddItems = () => {
   const [addItems] = useAddProductsMutation();
 
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = async (data) => {
+  const onSubmit = async (data:any) => {
     console.log(data);
-    const res = addItems(data);
+    const res = await addItems(data);
     if (res) {
       Swal.fire({
         position: "top-end",
@@ -22,7 +23,7 @@ const AddItems = () => {
     reset();
   };
 
-  const capitalizeFirstLetter = (str) => {
+  const capitalizeFirstLetter = (str:any) => {
     if (!str) return '';
     return str.charAt(0).toUpperCase() + str.slice(1);
   };

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 
 import { useUpdateProductsMutation } from "@/redux/api/baseApi"
@@ -6,12 +8,12 @@ import { useLoaderData, useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 
 type TAddProduct ={
-    _id:string,
+    _id?:string,
       title:string,
       price:number,
       rating:number,
       quantity:number,
-      image:string,
+      image?:string,
       category:string,
       categoryID?:string,
       description:string,
@@ -19,28 +21,33 @@ type TAddProduct ={
       instock?:boolean
   }
 
+  type TItem = {
+    data:{}
+    // Add other properties as needed
+  };
 
 const UpdateItem = () => {
     const navigate = useNavigate()
-    const item= useLoaderData()
-    const {_id,title,price,rating,quantity,description,image,category} = item.data
-    
+    const item= useLoaderData() as TItem;
+    const {_id,title,price,rating,quantity,description,category} = item.data as TAddProduct
+     
 
     const [updateItem] = useUpdateProductsMutation()
    
     
 
     const { register, handleSubmit} = useForm();
-  const onSubmit = async (data) => {
+  const onSubmit = async (data:any) => {
     console.log(data);
     const options = {
         id:_id,
         data:data
     }
     // console.log(_id)
-    const res = updateItem(options)
+    const res = await updateItem(options)
+    console.log(res)
     
-    if(res){
+    if(res ){
         Swal.fire({
             position: "top-end",
             icon: "success",

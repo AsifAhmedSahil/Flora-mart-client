@@ -1,7 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import Products from "@/components/Products";
-import SearchSection from "@/components/SearchSection";
-import CategoryWrapper from "../category/CategoryWrapper";
+
 import Mosaic from "@/components/Mosaic";
 
 const Home = () => {

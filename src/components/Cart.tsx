@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCartTotal,
@@ -8,10 +9,11 @@ import {
 import { useEffect } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { RootState } from "@/redux/store";
 
 const Cart = () => {
   const { cart, totalQuantity, totalPrice } = useSelector(
-    (state) => state.allCart
+    (state:RootState) => state.allCart
   );
 
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ const Cart = () => {
     dispatch(getCartTotal());
 
     // Beforeunload event listener
-    const handleBeforeUnload = (event) => {
+    const handleBeforeUnload = (event:any) => {
       if (cart.length > 0) {
         // Cancel the event to ensure the browser shows our confirmation message
         event.preventDefault();
@@ -60,7 +62,7 @@ const Cart = () => {
           </p>
         </div>
 
-        { cart.map((data) => (
+        { cart.map((data:any) => (
           <div className="grid grid-cols-1 lg:grid-cols-2 min-[550px]:gap-6 border-t border-gray-200 py-6">
             <div className="flex items-center flex-col  min-[550px]:flex-row gap-3 min-[550px]:gap-6 w-full max-xl:justify-center max-xl:max-w-xl max-xl:mx-auto">
               <div className="img-box">

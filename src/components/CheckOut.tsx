@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAddOrdersMutation } from "@/redux/api/baseApi";
 import { clearCart } from "@/redux/features/cartSlice";
+import { RootState } from "@/redux/store";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,22 +13,22 @@ const CheckOut = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { cart, totalQuantity, totalPrice } = useSelector(
-    (state) => state.allCart
+  const { cart} = useSelector(
+    (state:RootState) => state.allCart
   );
 
   console.log(...cart,"under check out form")
 
 //   cart?.map((item)=> console.log(item._id))
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data :any) => {
     console.log(data); // Ensure this prints the expected form data structure
 
     
 
     // Example of how you might use the mutation hook to add orders
     try {
-        const orderData = { ...data,...cart, products: cart.map(item => ({ productId: item._id ,number:item.number})) };
+        const orderData = { ...data,...cart, products: cart.map((item:any) => ({ productId: item._id ,number:item.number})) };
       const response = await addItems(orderData);
       console.log(response)
       if (response.data) {

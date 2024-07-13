@@ -1,12 +1,39 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { useDispatch } from "react-redux";
 import { Link, useLoaderData } from "react-router-dom";
 import { addToCart } from "@/redux/features/cartSlice";
 
+interface TData {
+    data:{}
+}
+
+interface ProductData {
+    _id: string;
+    title: string;
+    image: string;
+    price: number;
+    rating: number;
+    category: string;
+    description: string;
+    quantity: number;
+  }
+// interface TProductData {
+//     _id: string;
+//     title: string;
+//     image: string;
+//     price: number;
+//     rating: number;
+//     category: string;
+//     description: string;
+//     quantity: number;
+//   }
+
 const ProductDetails = () => {
-  const item = useLoaderData();
+  const item = useLoaderData() as TData;
+//   console.log(item.data)
   const dispatch = useDispatch();
   const { _id, title, image, price, rating, category, description, quantity } =
-    item.data;
+    item.data as  ProductData ;
   const cartData = {
     _id,
     title,
