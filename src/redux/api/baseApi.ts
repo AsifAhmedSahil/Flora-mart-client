@@ -22,7 +22,7 @@ export const baseApi = createApi({
     // }),
 
     getAllProducts: builder.query({
-      query: ({ category, sortName ,search,sortPrice}) => {
+      query: ({ category, sortName ,search}) => {
         const params = {};
         
         if (category) {
@@ -35,9 +35,9 @@ export const baseApi = createApi({
         if(search){
           params.search = search
         }
-        if(sortPrice){
-          params.sortPrice = sortPrice
-        }
+        // if(sortPrice){
+        //   params.sortPrice = sortPrice
+        // }
     
 
         return {
