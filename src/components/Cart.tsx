@@ -15,22 +15,23 @@ const Cart = () => {
   );
 
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     dispatch(getCartTotal());
 
     // Beforeunload event listener
     const handleBeforeUnload = (event) => {
-      // Cancel the event to ensure the browser shows our confirmation message
-      event.preventDefault();
-      // Chrome requires returnValue to be set
-      event.returnValue = '';
+      if (cart.length > 0) {
+        // Cancel the event to ensure the browser shows our confirmation message
+        event.preventDefault();
+        // Chrome requires returnValue to be set
+        event.returnValue = '';
 
-      // Show confirmation dialog
-      const confirmationMessage = 'Are you sure you want to refresh? This will clear your cart data.';
-      event.returnValue = confirmationMessage; // For older browsers
-      return confirmationMessage; // For modern browsers
+        // Show confirmation dialog
+        const confirmationMessage = 'Are you sure you want to refresh? This will clear your cart data.';
+        event.returnValue = confirmationMessage; // For older browsers
+        return confirmationMessage; // For modern browsers
+      }
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -192,10 +193,7 @@ const Cart = () => {
 
         <Link to={"/checkout"}>
   <button
-    disabled={!cart.length || cart.some(data => {
-      console.log(`Checking item: ${data.title}, number: ${data.number}, quantity: ${data.quantity}`);
-      return data.number < data.quantity;
-    })}
+    disabled={cart.length === 0}
     className="rounded-full w-full max-w-[280px] py-4 px-3 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700"
   >
     Continue to Payment
