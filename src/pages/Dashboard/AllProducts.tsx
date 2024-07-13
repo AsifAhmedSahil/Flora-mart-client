@@ -1,11 +1,14 @@
 import { useDeleteSingleProductsMutation, useGetAllProductsQuery } from "@/redux/api/baseApi";
+import { useState } from "react";
 
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AllProducts = () => {
-  const { data: products, isLoading } = useGetAllProductsQuery(undefined);
+  const [categoryData,setCategoryData] = useState("")
+  const [sortData,setSortData] = useState("")
+  const { data: products, isLoading } = useGetAllProductsQuery({ category: categoryData, sort: sortData });
   const [deleteItem] = useDeleteSingleProductsMutation()
 
 
@@ -14,7 +17,7 @@ const AllProducts = () => {
     return <>Loading...</>;
   }
 
-  console.log(products.data);
+  console.log(products);
 
 type TAddProduct ={
   _id:string,

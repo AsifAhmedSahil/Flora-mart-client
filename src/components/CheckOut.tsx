@@ -20,6 +20,8 @@ const CheckOut = () => {
   const onSubmit = async (data) => {
     console.log(data); // Ensure this prints the expected form data structure
 
+    
+
     // Example of how you might use the mutation hook to add orders
     try {
         const orderData = { ...data, products: cart.map(item => ({ productId: item._id })) };
@@ -34,7 +36,13 @@ const CheckOut = () => {
           });
         // Reset the form after successful submission
         reset();
-        navigate("/checkout/payment")
+        if(data.payment === 'cash'){
+      
+          navigate("/")
+        }else{
+
+          navigate("/checkout/payment")
+        }
         
       }
     } catch (error) {
@@ -59,6 +67,27 @@ const CheckOut = () => {
           />
           {errors.email && <span className="text-red-500">Email is required</span>}
         </div>
+        <div className="flex gap-6">
+            {/* category */}
+            <div className="form-control w-full my-6">
+              <label className="label">
+                <span className="label-text">Payment Method*</span>
+              </label>
+              <select
+                defaultValue="default"
+                {...register("payment", { required: true })}
+                className="select select-bordered w-full"
+              >
+                <option disabled value="default">
+                  Select Payment Method
+                </option>
+                <option value="cash">Cash On delivery</option>
+                <option value="stripe">Stripe </option>
+                
+              </select>
+            </div>
+
+          </div>
 
         <div className="flex gap-6">
           <div className="form-control w-full my-6">

@@ -1,9 +1,15 @@
-import { useState } from "react";
+
 import { IoSearchOutline } from "react-icons/io5";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
+type TSearchSection = {
+  categoryData:string,
+  setCategoryData:string,
+  sortData:string,
+  setSortData:string
+}
 
-const SearchSection = ({categoryData,setCategoryData}) => {
+const SearchSection = ({categoryData,setCategoryData,sortData,setSortData}:TSearchSection) => {
     
   return (
     <div className="px-5 xl:px-10 md:w-2/3 mb-10  mx-auto border-red-600 border">
@@ -12,6 +18,8 @@ const SearchSection = ({categoryData,setCategoryData}) => {
         <form action="/addProduct"  className="bg-white p-4 rounded-full relative flex items-center border border-gray-500">
         <IoSearchOutline className="w-5 h-5 mr-2 text-neutral-300"/>
             <input className="bg-white outline-none w-full" type="search" name="query" placeholder="Search For Your Perfect Plants" id="search" />
+
+            {/* for category */}
         <div >
         <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,6 +33,25 @@ const SearchSection = ({categoryData,setCategoryData}) => {
           <DropdownMenuRadioItem value="flower">Flower</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="plant">Plant</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="fruit">Fruit</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+        </div>
+
+        {/* for sorting by asn and des */}
+        <div  className="p-4">
+        <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+     
+      <button className=" px-2  border border-gray-500 ">Sort</button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Sort By alphabet</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value={sortData} onValueChange={setSortData}>
+          <DropdownMenuRadioItem value="asc">Acending</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="desc">decending</DropdownMenuRadioItem>
+          
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

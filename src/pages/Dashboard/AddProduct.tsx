@@ -14,12 +14,17 @@ const AddItems = () => {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `${data.title} is added to the collections.`,
+        title: `${data?.title} is added to the collections.`,
         showConfirmButton: false,
         timer: 1500,
       });
     }
     reset();
+  };
+
+  const capitalizeFirstLetter = (str) => {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
   return (
@@ -34,6 +39,9 @@ const AddItems = () => {
               type="text"
               placeholder="Product Name"
               {...register("title", { required: true })}
+              onBlur={(e) => {
+                e.target.value = capitalizeFirstLetter(e.target.value);
+              }}
               required
               className="input input-bordered w-full px-2 py-4 rounded-full"
             />

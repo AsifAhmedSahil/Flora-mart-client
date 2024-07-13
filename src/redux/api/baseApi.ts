@@ -9,26 +9,39 @@ export const baseApi = createApi({
   endpoints: (builder) => ({
 
 
-    // getAllProducts: builder.query({
-    //   query: () => {
-    //     return {
-          
-    //       url: `/products`,
-    //       method: "GET",
-    //     };
-    //   },
-    //   providesTags:['Products']
-    // }),
+    
 
     // test with category
+    // getAllProducts: builder.query({
+    //   query: (category) => ({
+    //     url: `/products`,
+    //     method: 'GET',
+    //     params: { category  }, // Pass category as a parameter
+    //   }),
+    //   providesTags: ['Products'],
+    // }),
+
     getAllProducts: builder.query({
-      query: (category) => ({
-        url: `/products`,
-        method: 'GET',
-        params: { category }, // Pass category as a parameter
-      }),
+      query: ({ category, sort }) => {
+        const params = {};
+        
+        if (category) {
+          params.category = category;
+        }
+        
+        if (sort) {
+          params.sort = sort; // Ensure sort is added to params if it exists
+        }
+    
+        return {
+          url: '/products',
+          method: 'GET',
+          params: params,
+        };
+      },
       providesTags: ['Products'],
     }),
+    
 
 
     addProducts: builder.mutation({
