@@ -6,8 +6,8 @@ import { addToCart } from "@/redux/features/cartSlice";
 const ProductDetails = () => {
     const item = useLoaderData()
     const dispatch = useDispatch()
-    const{title,image,price,rating,category,description,quantity} = item.data
-    const cartData = {title,image,price,rating,category,description,quantity,number:1}
+    const{_id,title,image,price,rating,category,description,quantity} = item.data
+    const cartData = {_id,title,image,price,rating,category,description,quantity,number:1}
     // console.log(item.data)
   return (
     <div className="container mx-auto">

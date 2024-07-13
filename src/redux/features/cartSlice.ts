@@ -15,14 +15,29 @@ import { createSlice } from '@reduxjs/toolkit'
     name:'cart',
     initialState,
     reducers:{
-        addToCart: (state,action) =>{
-          const find = state.cart.findIndex((item) => item._id === action.payload._id);
-          if (find >= 0) {
-            state.cart[find].number += 1;
+        // addToCart: (state,action) =>{
+        //   const find = state.cart.findIndex((item) => item._id === action.payload._id);
+        //   if (find >= 0) {
+        //     state.cart[find].number += 1;
+        //   } else {
+        //     state.cart.push(action.payload);
+        //   }
+        // },
+
+        addToCart: (state, action) => {
+          const { _id } = action.payload;
+          const existingItem = state.cart.find(item => item._id === _id);
+    
+          if (existingItem) {
+            // If item already exists in cart, increment quantity
+            existingItem.number += 1;
           } else {
+            // If item does not exist in cart, add it
             state.cart.push(action.payload);
           }
         },
+        
+
         getCartTotal: (state) => {
           const { totalQuantity, totalPrice } = state.cart.reduce(
             (cartTotal, cartItem) => {
