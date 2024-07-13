@@ -18,7 +18,26 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(getCartTotal());
-  }, [cart]);
+
+    // Beforeunload event listener
+    const handleBeforeUnload = (event) => {
+      // Cancel the event to ensure the browser shows our confirmation message
+      event.preventDefault();
+      // Chrome requires returnValue to be set
+      event.returnValue = '';
+
+      // Show confirmation dialog
+      const confirmationMessage = 'Are you sure you want to refresh? This will clear your cart data.';
+      event.returnValue = confirmationMessage; // For older browsers
+      return confirmationMessage; // For modern browsers
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [cart, dispatch]);
 
   return (
     <section className="py-24 relative">
