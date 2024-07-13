@@ -78,7 +78,7 @@ const Products = () => {
       <DropdownMenuContent className="w-56">
         {/* <DropdownMenuLabel>Sort </DropdownMenuLabel> */}
         <DropdownMenuSeparator />
-        // @ts-ignore
+        
         <DropdownMenuRadioGroup value={sortData} onValueChange={setSortData}>
           <DropdownMenuRadioItem value="all">All</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="asc">Acending(A to Z)</DropdownMenuRadioItem>
