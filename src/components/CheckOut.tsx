@@ -1,6 +1,7 @@
 import { useAddOrdersMutation } from "@/redux/api/baseApi";
+import { clearCart } from "@/redux/features/cartSlice";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -8,12 +9,13 @@ const CheckOut = () => {
   const [addItems] = useAddOrdersMutation();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const { cart, totalQuantity, totalPrice } = useSelector(
     (state) => state.allCart
   );
 
-//   console.log(cart,"under check out form")
+  console.log(...cart,"under check out form")
 
 //   cart?.map((item)=> console.log(item._id))
 
@@ -24,7 +26,7 @@ const CheckOut = () => {
 
     // Example of how you might use the mutation hook to add orders
     try {
-        const orderData = { ...data, products: cart.map(item => ({ productId: item._id })) };
+        const orderData = { ...data,...cart, products: cart.map(item => ({ productId: item._id ,number:item.number})) };
       const response = await addItems(orderData);
       if (response.data) {
         Swal.fire({
@@ -43,6 +45,7 @@ const CheckOut = () => {
 
           navigate("/checkout/payment")
         }
+        dispatch(clearCart())
         
       }
     } catch (error) {

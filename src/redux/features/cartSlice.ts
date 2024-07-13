@@ -16,6 +16,9 @@ import { createSlice } from '@reduxjs/toolkit'
     initialState,
     reducers:{
         
+      clearCart:(state) =>{
+        state.cart = [];
+      },
 
         addToCart: (state, action) => {
           const { _id } = action.payload;
@@ -79,6 +82,6 @@ import { createSlice } from '@reduxjs/toolkit'
   
 
 
-  export const {addToCart,addSearchText,getCartTotal,removeItem,increaseItemQuantity,decreaseItemQuantity} = cartSlice.actions
+  export const {addToCart,clearCart,addSearchText,getCartTotal,removeItem,increaseItemQuantity,decreaseItemQuantity} = cartSlice.actions
 
   export default cartSlice.reducer;
