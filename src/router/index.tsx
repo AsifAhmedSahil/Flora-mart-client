@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "/items/:id",
         element: <ProductDetails />,
-        loader: ({params}) => fetch(`http://localhost:5000/api/products/${params.id}`)
+        loader: ({params}) => fetch(`https://batch-3-assignament-4-floramart-server.vercel.app/api/products/${params.id}`)
       },
 
       {
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
       {
         path: "updateItem/:id",
         element: <UpdateItem/>,
-        loader: ({params}) => fetch(`http://localhost:5000/api/products/${params.id}`)
+        loader: ({params}) => fetch(`https://batch-3-assignament-4-floramart-server.vercel.app/api/products/${params.id}`)
       },
 
       {

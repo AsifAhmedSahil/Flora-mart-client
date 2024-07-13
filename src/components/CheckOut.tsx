@@ -33,7 +33,7 @@ const CheckOut = () => {
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `${data.title} is added to the collections.`,
+            title: `Thanks For Order`,
             showConfirmButton: false,
             timer: 1500,
           });
