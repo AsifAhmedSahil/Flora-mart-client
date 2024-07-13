@@ -28,6 +28,7 @@ const CheckOut = () => {
     try {
         const orderData = { ...data,...cart, products: cart.map(item => ({ productId: item._id ,number:item.number})) };
       const response = await addItems(orderData);
+      console.log(response)
       if (response.data) {
         Swal.fire({
             position: "top-end",

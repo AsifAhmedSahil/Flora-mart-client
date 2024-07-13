@@ -15,6 +15,7 @@ const Cart = () => {
   );
 
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
     dispatch(getCartTotal());
@@ -86,7 +87,7 @@ const Cart = () => {
                 <FaRegTrashAlt className="text-black px-2 py-2 size-10 rounded-lg bg-red-500 lg:bg-white   w-full " />
               </button>
               <div className="flex items-center mr-0   mx-auto justify-center   ">
-                <button onClick={() => dispatch(decreaseItemQuantity(data._id))} className="group rounded-l-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50">
+                <button disabled={data.number < 1} onClick={() => dispatch(decreaseItemQuantity(data._id))} className="group rounded-l-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50">
                   <svg
                     className="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
                     xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +123,7 @@ const Cart = () => {
                   className="border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[118px] min-w-[80px] placeholder:text-gray-900 py-[15px] text-center bg-transparent"
                   placeholder={data.number}
                 ></input>
-                <button onClick={() => dispatch(increaseItemQuantity(data._id))} className="group rounded-r-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50">
+                <button disabled={data.number > data.quantity -1} onClick={() => dispatch(increaseItemQuantity(data._id))} className="group rounded-r-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50">
                   <svg
                     className="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
                     xmlns="http://www.w3.org/2000/svg"
@@ -187,27 +188,22 @@ const Cart = () => {
         </div>
         <div className="flex items-center flex-col sm:flex-row justify-center mt-8">
           
-          <Link to={"/checkout"}>
-          <button disabled={!cart.length} className="rounded-full w-full max-w-[280px] py-4 px-3 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700">
-            Continue to Payment
-            <svg
-              className="ml-2"
-              xmlns="http://www.w3.org/2000/svg"
-              width="23"
-              height="22"
-              viewBox="0 0 23 22"
-              fill="none"
-            >
-              <path
-                d="M8.75324 5.49609L14.2535 10.9963L8.75 16.4998"
-                stroke="white"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-          </Link>
+          
+
+        <Link to={"/checkout"}>
+  <button
+    disabled={!cart.length || cart.some(data => {
+      console.log(`Checking item: ${data.title}, number: ${data.number}, quantity: ${data.quantity}`);
+      return data.number < data.quantity;
+    })}
+    className="rounded-full w-full max-w-[280px] py-4 px-3 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700"
+  >
+    Continue to Payment
+  </button>
+</Link>
+
+
+          
         </div>
       </div>
     </section>
