@@ -11,8 +11,8 @@ const Home = () => {
     {/* <div className="max-w-7xl mx-auto pt-20 px-6 "> */}
     <div className="flex flex-col justify-center items-center w-full py-20 ">
       <HeroSection />
-      <SearchSection/>
-      <CategoryWrapper/>
+      {/* <SearchSection/> */}
+      {/* <CategoryWrapper/> */}
       <Products/>
       <Mosaic/>
     </div>

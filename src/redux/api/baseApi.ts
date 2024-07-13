@@ -9,16 +9,25 @@ export const baseApi = createApi({
   endpoints: (builder) => ({
 
 
+    // getAllProducts: builder.query({
+    //   query: () => {
+    //     return {
+          
+    //       url: `/products`,
+    //       method: "GET",
+    //     };
+    //   },
+    //   providesTags:['Products']
+    // }),
+
+    // test with category
     getAllProducts: builder.query({
-      query: () => {
-        return {
-          // query: () => ({
-          // url: `/tasks?priority=${priority}`,
-          url: `/products`,
-          method: "GET",
-        };
-      },
-      providesTags:['Products']
+      query: (category) => ({
+        url: `/products`,
+        method: 'GET',
+        params: { category }, // Pass category as a parameter
+      }),
+      providesTags: ['Products'],
     }),
 
 
