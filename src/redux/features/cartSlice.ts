@@ -15,14 +15,7 @@ import { createSlice } from '@reduxjs/toolkit'
     name:'cart',
     initialState,
     reducers:{
-        // addToCart: (state,action) =>{
-        //   const find = state.cart.findIndex((item) => item._id === action.payload._id);
-        //   if (find >= 0) {
-        //     state.cart[find].number += 1;
-        //   } else {
-        //     state.cart.push(action.payload);
-        //   }
-        // },
+        
 
         addToCart: (state, action) => {
           const { _id } = action.payload;

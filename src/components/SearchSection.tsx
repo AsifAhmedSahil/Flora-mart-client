@@ -9,10 +9,12 @@ type TSearchSection = {
   sortData:string,
   setSortData:string,
   searchData:string,
-  setSearchData:any 
+  setSearchData:any ,
+  sortPriceData:string,
+  setSortPriceData:string
 }
 
-const SearchSection = ({categoryData,setCategoryData,sortData,setSortData,searchData,setSearchData}:TSearchSection) => {
+const SearchSection = ({categoryData,setCategoryData,sortData,setSortData,searchData,setSearchData,sortPriceData,setSortPriceData}:TSearchSection) => {
     
   const handleInputChange = (e) => {
     setSearchData(e.target.value);
@@ -57,6 +59,25 @@ const SearchSection = ({categoryData,setCategoryData,sortData,setSortData,search
         <DropdownMenuRadioGroup value={sortData} onValueChange={setSortData}>
           <DropdownMenuRadioItem value="asc">Acending</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="desc">decending</DropdownMenuRadioItem>
+          
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+        </div>
+
+        {/* for sorting by price high and low */}
+        <div  className="p-4">
+        <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+     
+      <button className=" px-2  border border-gray-500 ">Sort</button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Sort By Price</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value={sortPriceData} onValueChange={setSortPriceData}>
+          <DropdownMenuRadioItem value="high">High</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="low">Low</DropdownMenuRadioItem>
           
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

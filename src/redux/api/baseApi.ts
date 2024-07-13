@@ -22,18 +22,21 @@ export const baseApi = createApi({
     // }),
 
     getAllProducts: builder.query({
-      query: ({ category, sort ,search}) => {
+      query: ({ category, sortName ,search,sortPrice}) => {
         const params = {};
         
         if (category) {
           params.category = category;
         }
         
-        if (sort) {
-          params.sort = sort; // Ensure sort is added to params if it exists
+        if (sortName) {
+          params.sortName = sortName; // Ensure sort is added to params if it exists
         }
         if(search){
           params.search = search
+        }
+        if(sortPrice){
+          params.sortPrice = sortPrice
         }
     
 
