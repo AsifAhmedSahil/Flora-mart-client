@@ -11,9 +11,10 @@ import { useState } from "react"
 const Products = () => {
   const [categoryData,setCategoryData] = useState("")
   const [sortData,setSortData] = useState("")
+  const [searchData,setSearchData] = useState("")
   console.log(categoryData)
     // const {data:product,isError,isLoading} = useGetAllProductsQuery(categoryData,sortData)
-    const {data:product,isError,isLoading} = useGetAllProductsQuery({ category: categoryData, sort: sortData })
+    const {data:product,isError,isLoading} = useGetAllProductsQuery({ category: categoryData, sort: sortData,search:searchData })
     
     console.log(product)
     const productsToShow = product?.data.slice(0, 8);
@@ -22,7 +23,7 @@ const Products = () => {
     <>
 
 
-<SearchSection categoryData={categoryData} setCategoryData={setCategoryData}sortData={sortData} setSortData={setSortData}/>
+<SearchSection categoryData={categoryData} setCategoryData={setCategoryData}sortData={sortData} setSortData={setSortData} searchData={searchData} setSearchData={setSearchData}/>
 
 
 
